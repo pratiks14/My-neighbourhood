@@ -282,9 +282,7 @@ function createMarkers(map, bounds) {
 			markers[i] = marker;
 			bounds.extend(position);
 			marker.setMap(map);
-			marker.addListener('click', function () {
-				populateInfoWindow(this);
-			});
+			marker.addListener('click', populateInfoWindow);
 			marker.addListener('mouseover', mouseoverFunc);
 
 			marker.addListener('mouseout', mouseoutFunc);
@@ -321,10 +319,11 @@ function mouseoverFunc() {
 // * @constructor
 // * @param {string} marker-the marker clicked on
 
-function populateInfoWindow(marker) {
+function populateInfoWindow() {
 
 	var infowindow = new google.maps.InfoWindow();
 	// Check to make sure the infowindow is not already opened on this marker.
+	var marker = this;
 	if (infowindow.marker != marker) {
 		infowindow.marker = marker;
 		infowindow.open(map, marker);
