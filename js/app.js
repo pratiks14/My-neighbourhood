@@ -366,7 +366,7 @@ function populateInfoWindow() {
 				}
 				$(this).html(htmlstr);
 			});
-		}
+		};
 		var streetViewService = new google.maps.StreetViewService();
 		var radius = 50;
 		// Use streetview service to get the closest streetview image within
