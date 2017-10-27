@@ -1,5 +1,5 @@
 # My Neighborhood  #
-
+- [Link to project](https://pratiks14.github.io)
 
 ## Basic Description ##
 - This project uses Google Maps API to display the Bengaluru Area.
@@ -35,7 +35,7 @@ to select you have to click on the item on the list.
 
 - After you have selected an destination from the list you can see the related wiki links by clicking on the wiki-button and if no links available it would show no articles.
 
-- To **reset** the map to its initial state you can have to click on the (My Neighborhood)Header on the page the map resets. 
+- To **reset** the map to its initial state you can have to click on the (My Neighborhood)Header on the page the map resets.
 
 
 ### Sources:###
