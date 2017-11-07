@@ -1,4 +1,5 @@
-var map;
+
+var map = null;
 var newvm;
 
 var locations = [];
@@ -128,19 +129,24 @@ var ViewModel = function () {
 	//destination else resets the filter list
 	self.filterClick = function () {
 		var substr =self.searchStr().toLowerCase();
-		if(substr === ''){
+		if(substr === '')
+		{
 			//this is called when filter has been clicked when user has already
 			//selected an option
-			for (var i = 0; i < self.marks().length; i++) {
+			for (var i = 0; i < self.marks().length; i++)
+			{
 				self.marks()[i].filter(true);
 			}
 			self.filterIt(true);
 		}
 		else
 		{
-			for (var i = 0; i < self.marks().length; i++) {
-				if (self.marks()[i].title.toLowerCase().indexOf(substr) < 0) {
-					self.marks()[i].filter(false);
+
+			for (var j = 0; j < self.marks().length; j++)
+			{
+				if (self.marks()[j].title.toLowerCase().indexOf(substr) < 0)
+				{
+					self.marks()[j].filter(false);
 				}
 			}
 			self.filterIt(false);
@@ -158,7 +164,7 @@ var ViewModel = function () {
 				markers[id].setVisible(false);
 			}
 		});
-	}
+	};
 
 	//animation for side panel
 	self.sidepanel = ko.observable(false);
@@ -166,14 +172,14 @@ var ViewModel = function () {
 	self.sidebutton = function(){
 		var res = self.sidepanel()?false:true;
 		self.sidepanel(res);
-	}
+	};
 
 	//animations for wiki panel
 	self.wikipanel = ko.observable(false);
 	self.wikibutton = function(){
 		var res = self.wikipanel()?false:true;
 		self.wikipanel(res);
-	}
+	};
 
 };
 
