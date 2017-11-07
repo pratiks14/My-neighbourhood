@@ -7,9 +7,15 @@
 
 ## How To Run ##
 - Download or clone the repo.
-- Open index.html on your browser.(preferably Chrome).
+- pyhthon should be installed on ur pc to run this app.
+- Go to directory containing index,html in the terminal type...
 
-## How it works and functionality##
+    ```python -m SimpleHTTPServer```
+
+- visit localhost:8000 on the browser to visit the page.
+
+
+## How it works and functionality
 -  When index.html page is opened the page displays an header with the map inclded below it.
 
 - search and wiki icons are visible on each corner.
@@ -21,8 +27,6 @@ the map.
 - When you hover over the marker its indicated by the changing color of the marker.
 
 - You can click on the marker which shows you the name of destinatin and the street view if available.
-
-- On the top left Corner of the map You can see a heart icon this is used to provide the **"favourite"** functionality of the map when you click on it changes the marker color to pink and fills up the clicked heart Icon.
 
 - To get search box or the wiki box you have click on the icon provided on the map.
 

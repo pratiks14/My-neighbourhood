@@ -1,0 +1,82 @@
+[{
+	"title": "Wonderla Amusement Park",
+	"favourite": false,
+	"filter": true,
+	"visible": true,
+	"location": {
+		"lat": 12.834556,
+		"lng": 77.400972
+	},
+	"id":0,
+	"icon": "images/camping.png"
+}, {
+	"title": "Iscon Temple Bangalore",
+	"favourite": false,
+	"filter": true,
+	"visible": true,
+	"location": {
+		"lat": 13.0096323,
+		"lng": 77.551071
+	},"id":1,
+	"icon": "images/temple.png"
+}, {
+	"title": "UB City Bangalore",
+	"favourite": false,
+	"filter": true,
+	"visible": true,
+	"location": {
+		"lat": 12.9715895,
+		"lng": 77.59605859999999
+	},"id":2,
+	"icon": "images/mall.png"
+}, {
+	"title": "Art of Living Bangalore",
+	"favourite": false,
+	"filter": true,
+	"visible": true,
+	"location": {
+		"lat": 12.793013,
+		"lng": 77.5051502
+	},"id":3,
+	"icon": "images/temple.png"
+}, {
+	"title": "Lalbagh Botanical Garden",
+	"favourite": false,
+	"filter": true,
+	"visible": true,
+	"location": {
+		"lat": 12.9507432,
+		"lng": 77.5847773
+	},"id":4,
+	"icon": "images/forest.png"
+}, {
+	"title": "Cubbon Park",
+	"favourite": false,
+	"filter": true,
+	"visible": true,
+	"location": {
+		"lat": 12.9763472,
+		"lng": 77.59292839999999
+	},"id":5,
+	"icon": "images/forest.png"
+}, {
+	"title": "M. Chinnaswamy Stadium",
+	"favourite": false,
+	"filter": true,
+	"visible": true,
+	"location": {
+		"lat": 12.9788139,
+		"lng": 77.5995932
+	},"id":6,
+	"icon": "images/stadium.png"
+}, {
+	"title": "Commercial Street Bangalore",
+	"favourite": false,
+	"filter": true,
+	"visible": true,
+	"location": {
+		"lat": 12.9821663,
+		"lng": 77.6083553
+	},"id":7,
+	"icon": "images/mall.png"
+}]

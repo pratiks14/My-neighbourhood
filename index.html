@@ -8,30 +8,29 @@
         <link rel="stylesheet" media="(max-width: 670px)" href="css/responsive.css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <title>My Neighbourhood</title>
-        <script type="text/javascript" src="js/knockout.js"></script>
-        <script type="text/javascript" src="js/jquery.min.js"></script>
     </head>
     <body>
         <div class="container">
-            <div class="side-panel" id="side-div">
+            <div class="side-panel" id="side-div" data-bind="fadeVisible:sidepanel">
                 <h4>YOU CAN SEARCH!!</h4>
-                <input type="text" id="search-dest" placeholder="Search dest...">
+                <input type="text" id="search-dest" data-bind="textInput:searchStr" placeholder="Search dest...">
                 <button id="filter" data-bind="click:filterClick"><span><img height="20px" src="images/filter.png"></span></button>
                 <ul id="destinations" data-bind="foreach: filteredMarks">
                     <li><button data-bind="text:$data.title,click:$parent.enableCurrent"></button></li>
                 </ul>
             </div>
-            <div class="side-panel wiki-panel">
+            <div class="side-panel wiki-panel" data-bind="fadeVisible:wikipanel">
                 <h4>Wiki Articles!!!</h4>
                 <div>
-                    <ul id="wiki-link">
+                    <ul id="wiki-link" data-bind = "foreach: wikiData">
+                        <li><a  data-bind="style:{display:$data.url == ''?'none':'inline'} ,attr:{href: $data.url},text:$data.title"></a><p data-bind="text:$data.content"></p>
                     </ul>
                 </div>
             </div>
-            <div id="search-button">
+            <div id="search-button" data-bind="click:sidebutton">
                 <button><img src="images/search.png"></button>
             </div>
-            <div id="wiki-button">
+            <div id="wiki-button" data-bind="click:wikibutton">
                 <button><img src="images/wiki.png"></button>
             </div>
             <div class="content">
@@ -40,11 +39,16 @@
                 </div>
                 <div id="map">
                 </div>
+                <div id="maperror">
+                </div>
             </div>
         </div>
-        <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNKtSJ1Joo6vqa3xziFPrhx8VjhEdORz0&v=3&callback=initMap"></script>
+        <script type="text/javascript" src="js/knockout.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/merror.js"></script>
+        <script type="text/javascript" src="js/koutils.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
-        </div>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNKtSJ1Joo6vqa3xziFPrhx8VjhEdORz0&v=3&callback=initMap" onerror="merror()"></script>
     </body>
 </html>

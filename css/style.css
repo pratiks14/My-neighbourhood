@@ -41,6 +41,7 @@ body {
     cursor: pointer;
 }
 
+
 #destinations li button:hover {
     color: #000;
     background-color: white;
@@ -111,6 +112,13 @@ p {
     bottom: 92%;
     z-index: 1;
 }
+#maperror
+{
+    position:absolute;
+    width:100%;
+    bottom:50%;
+    text-align: center;
+}
 
 #map {
     bottom: 0px;
@@ -124,8 +132,8 @@ p {
 .side-panel {
     background: #000;
     border-right: 3px solid #fff;
+    height: 90%;
     border-radius: 7px;
-    height: 92%;
     line-height: 35px;
     text-align: left;
     width: 300px;
@@ -134,7 +142,6 @@ p {
     opacity: .5;
     top: 8%;
     bottom: 0px;
-    display: none;
 }
 
 .wiki-panel {
