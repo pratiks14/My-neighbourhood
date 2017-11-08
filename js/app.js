@@ -1,10 +1,9 @@
-
 var map = null;
 var newvm;
 
 var locations = [];
 var timevar = setTimeout(function(){
-	console.log("Couldnt fetch location list!!,Please Try again!!");
+	alert("TimeOut!! Couldnt fetch location list!!,Please Try again!!");
 },2000);
 
 var locFunc = function(){
@@ -16,15 +15,14 @@ var locFunc = function(){
 			locations=res;
 			newvm = new ViewModel();
 			ko.applyBindings(newvm);
+			initMap();
 		},
 		error: function (err) {
-			console.error(err);
+			alert("Error Ocuured while fetching location list...Try again!!");
 		}
 	});
 };
 
-
-locFunc();
 
 // @description object respresent a marker on the map.
 // @constructor-
@@ -76,7 +74,7 @@ var ViewModel = function () {
 				}
 			},
 			error: function (err) {
-				console.error('An error has occurred');
+				self.wikiData([{url:'',title:'',content:'An Error Ocuured..Please try again later!'}]);
 			}
 		});
 	};
@@ -88,14 +86,6 @@ var ViewModel = function () {
 	self.enableCurrent = function (loc) {
 		self.selected_marker(loc);
 		self.selected(true);
-		for (var i = 0; i < self.marks().length; i++) {
-			if (self.marks()[i] === self.selected_marker()) {
-				self.marks()[i].visible(true);
-				continue;
-			}
-			self.marks()[i].visible(false);
-
-		}
 		var bounds = new google.maps.LatLngBounds();
 		createMarkers(map, bounds,false);
 		map.fitBounds(bounds);
@@ -187,7 +177,6 @@ var ViewModel = function () {
 //This is the callback function for google api
 function initMap() {
 	// Constructor creates a new map.
-	clearTimeout(timevar);
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: {
 			lat: 12.971594,
@@ -230,8 +219,10 @@ function makeMarkerIcon(markerColor) {
 // * @param {string} bounds- used to adjust the display area  of the map
 // */
 function createMarkers(map, bounds,clear) {
-	for (var i = 0; i < newvm.marks().length; i++) {
-		if (!markers[i] && newvm.marks()[i].visible()) {
+	for (var i = 0; i < newvm.marks().length; i++)
+	{
+		if (!markers[i])
+		{
 			//this code is run when a initially markers are created
 			var position = newvm.marks()[i].latLng;
 			var title = newvm.marks()[i].title;
@@ -249,43 +240,30 @@ function createMarkers(map, bounds,clear) {
 			bounds.extend(position);
 			marker.setMap(map);
 			marker.addListener('click', populateInfoWindow);
-			marker.addListener('mouseover', mouseoverFunc);
-
-			marker.addListener('mouseout', mouseoutFunc);
-		} else {
-			if (newvm.marks()[i].visible()) {
-				//for the marker which is selected
-				markers[i].setVisible(true);
-				var animation = clear ? null : google.maps.Animation.BOUNCE;
-				markers[i].setAnimation(animation);
+		}
+		else
+		{
+			if (newvm.selected())
+			{
+				if(newvm.marks()[i] === newvm.selected_marker())
+				{
+					//for the marker which is selected
+					markers[i].setAnimation(google.maps.Animation.BOUNCE);
+					bounds.extend(markers[i].position);
+				}
+				else {
+					markers[i].setAnimation(null);
+				}
+			}
+			else
+			{
+				markers[i].setAnimation(null);
 				bounds.extend(markers[i].position);
-			} else {
-				//for marker which arebt selected
-				markers[i].setVisible(false);
 			}
 		}
 	}
 }
 
-//This function changes the marker color cursor hovers above it
-//no change if marker destination is favourite.
-function mouseoutFunc() {
-	markers[this.id].setAnimation(null);
-	var hoverIcon = makeMarkerIcon('D3D3D3');
-	this.setAnimation(null);
-	if (!newvm.marks()[this.id].favourite())
-		this.setIcon(hoverIcon);
-}
-
-function mouseoverFunc() {
-	var marker = this;
-	markers[marker.id].setAnimation(google.maps.Animation.BOUNCE);
-	var defaultIcon = makeMarkerIcon('FFFFFF');
-	if (!newvm.marks()[this.id].favourite())
-		this.setIcon(defaultIcon);
-}
-
-var infowindowLoaded = false;
 
 
 // * @description populated infowindow of the marker upon click
@@ -334,6 +312,10 @@ function populateInfoWindow() {
 		streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
 		// Open the infowindow on the correct marker.
 		infowindow.open(map, marker);
+		marker.setAnimation(google.maps.Animation.BOUNCE);
+		setTimeout(function(){
+			marker.setAnimation(null);
+		},4000);
 		newvm.selected(true);
 		newvm.selected_marker(newvm.marks()[marker.id]);
 		newvm.wiki();
